@@ -1,0 +1,51 @@
+"""
+query for Additional Task Option 1)
+"""
+query FILTER_TASKS($searchTerm: String) {
+  tasks(
+    input: {
+      limit: 10
+      orderby: { name: asc }
+      where: { 
+          displaytype:{NEQ:heading},
+          status: { EQ: active }, 
+          name: { LIKE: $searchTerm } 
+        }
+    }
+  ) {
+    id
+    name
+    timerecords {
+      ...TIMERECORD_INFO
+    }
+    taskTotalTimespent: timespent
+  }
+}
+
+"""
+Example Input for GET_FILTER_TASKS
+{
+  "searchTerm":"test"
+}
+"""
+
+"""
+Mutation for Additional Task 2: 
+
+"""
+
+mutation UPDATE_TIMERECORD_NOTES($input: UpdateTimerecordNotesInput) {
+  updateTimerecordNotes(input: $input) {
+    ...TIMERECORD_INFO
+  }
+}
+"""
+example mutation input
+{
+  "input": {
+    "id": 456,
+    "notes":"UPDATED NOTES"
+  }
+}
+
+"""
