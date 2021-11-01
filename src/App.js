@@ -27,11 +27,9 @@ function App() {
       );
       setCurrentTask(newCurrentTaskData[0]);
     }
-    console.log(allTasks);
   }, [allTasks, currentTask]);
 
   const handleStartTaskTracking = async () => {
-    console.log(currentTask);
     try {
       setIsTracking(true);
       await startTracking({
